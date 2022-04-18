@@ -14,10 +14,12 @@
     "@web3-onboard/injected-wallets": "^2.0.5",
     "@web3-onboard/react": "^2.1.2",
     "classnames": "^2.3.1",
+    "ethers": "^5.6.4",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "react-stockcharts": "^0.7.8",
+    "react-icons": "^4.3.1",
+    "react-toastify": "^8.2.0",
     "usehooks-ts": "^2.5.1"
   },
   "devDependencies": {

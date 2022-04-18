@@ -1,10 +1,5 @@
-import { Indicators } from "cryptocurrency-trading-indicators"
-
-export type PoolInfo = {
-  isLoading: boolean
-  symbol: string,
-  indicators?: Indicators
-  maFast: any,
-  maSlow: any,
-  price: any
+export enum ChainID {
+  // Mainnet = "0x1",
+  // Rinkeby = "0x4",
+  BscTestnet = "0x61",
 }

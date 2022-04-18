@@ -2,7 +2,7 @@ import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { CHAIN_ID } from "../../config/constants";
+import { DefaultChainId } from "../../config/constants";
 
 const Header = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
@@ -10,7 +10,7 @@ const Header = () => {
   const handleConnectWallet = async () => {
     try {
       await connect({});
-      await setChain({ chainId: CHAIN_ID });
+      await setChain({ chainId: DefaultChainId });
     } catch (error) {
       console.log(error);
     }
