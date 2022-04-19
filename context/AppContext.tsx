@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import Reducer, { initialState } from "../stores/reducer";
 import { ActionValues, State } from "../stores/types";

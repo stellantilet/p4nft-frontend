@@ -1,9 +1,10 @@
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
+import axios from "axios";
 import { ContractReceipt, ContractTransaction, ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { toast } from "react-toastify";
-import { ChainInfo, DefaultChainId } from "../../config/constants";
+import { API_URL, CHAIN_INFO, DEFAULT_CHAIN_ID } from "../../config/constants";
 import CONTRACTS from "../../config/contracts";
 
 const Mint = ({}) => {
@@ -20,7 +21,7 @@ const Mint = ({}) => {
     if (!wallet) {
       return;
     }
-    await setChain({ chainId: DefaultChainId });
+    await setChain({ chainId: DEFAULT_CHAIN_ID });
     if (!wallet?.provider) {
       return;
     }
@@ -28,7 +29,7 @@ const Mint = ({}) => {
     const provider = new ethers.providers.Web3Provider(wallet?.provider);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      CONTRACTS.ERC721P4.addresses[DefaultChainId],
+      CONTRACTS.ERC721P4.addresses[DEFAULT_CHAIN_ID],
       CONTRACTS.ERC721P4.abi,
       signer
     );
@@ -42,7 +43,12 @@ const Mint = ({}) => {
         return x.event === "Transfer";
       });
       if (events && events.length > 0) {
-        toast.success("Mint successfully.");
+        const id = events[0].args?.tokenId.toString();
+        toast.success(`NFT-${id} Mint successfully.`);
+        const url = `${API_URL}/items`;
+        axios.post(url, {
+          id,
+        });
       }
       loadData();
     } catch (error: any) {
@@ -60,10 +66,10 @@ const Mint = ({}) => {
   const loadData = async () => {
     try {
       const provider = new ethers.providers.JsonRpcProvider(
-        ChainInfo[DefaultChainId].rpc
+        CHAIN_INFO[DEFAULT_CHAIN_ID].rpc
       );
       const contract = new ethers.Contract(
-        CONTRACTS.ERC721P4.addresses[DefaultChainId],
+        CONTRACTS.ERC721P4.addresses[DEFAULT_CHAIN_ID],
         CONTRACTS.ERC721P4.abi,
         provider
       );

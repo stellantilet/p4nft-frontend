@@ -2,15 +2,21 @@ import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { DefaultChainId } from "../../config/constants";
+import { DEFAULT_CHAIN_ID } from "../../config/constants";
+import { useOnboard } from "../../context/OnboardContext";
 
 const Header = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain();
+  const onboard = useOnboard();
+
   const handleConnectWallet = async () => {
     try {
-      await connect({});
-      await setChain({ chainId: DefaultChainId });
+      const wallets = await onboard?.connectWallet({});
+      if (!wallets || wallets?.length === 0) {
+        return;
+      }
+      await onboard?.setChain({ chainId: DEFAULT_CHAIN_ID });
     } catch (error) {
       console.log(error);
     }
