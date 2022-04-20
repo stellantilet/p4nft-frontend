@@ -23,7 +23,7 @@ const Header = () => {
   };
   return (
     <div className="bg-black">
-      <nav className="flex items-center justify-between flex-wrap px-4 py-6 container mx-auto">
+      <nav className="flex items-center justify-between flex-wrap p-4 container mx-auto">
         <div className="flex items-center flex-shrink-0 text-white mr-10">
           <Link href="/">
             <a>
