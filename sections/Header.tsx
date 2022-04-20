@@ -2,8 +2,8 @@ import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { DEFAULT_CHAIN_ID } from "../../config/constants";
-import { useOnboard } from "../../context/OnboardContext";
+import { DEFAULT_CHAIN_ID } from "../config/constants";
+import { useOnboard } from "../context/OnboardContext";
 
 const Header = () => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
@@ -25,7 +25,11 @@ const Header = () => {
     <div className="bg-black">
       <nav className="flex items-center justify-between flex-wrap px-4 py-6 container mx-auto">
         <div className="flex items-center flex-shrink-0 text-white mr-10">
-          <Image src={"/logo.svg"} alt="logo" width="48px" height="48px" />
+          <Link href="/">
+            <a>
+              <Image src={"/logo.svg"} alt="logo" width="48px" height="48px" />
+            </a>
+          </Link>
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border text-white border-white hover:text-white hover:border-white">
@@ -41,7 +45,7 @@ const Header = () => {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow">
-            <Link href="/">
+            <Link href="/nfts">
               <a className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
                 NFTs
               </a>

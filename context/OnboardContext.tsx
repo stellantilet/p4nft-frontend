@@ -64,7 +64,7 @@ const web3Onboard = init({
 });
 
 interface AppContextProps {
-  onboard?: OnboardAPI;
+  onboard: OnboardAPI;
 }
 const OnboardContext = createContext<AppContextProps>({} as AppContextProps);
 
@@ -73,7 +73,7 @@ export const OnboardContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [onboard, setOnboard] = useState<OnboardAPI>();
+  const [onboard, setOnboard] = useState<OnboardAPI>({} as OnboardAPI);
   const [connectedWallet, setConnectedWallet] = useLocalStorage(
     "connectedWallet",
     ""

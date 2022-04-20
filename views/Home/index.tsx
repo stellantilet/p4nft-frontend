@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Footer from "../Layouts/Footer";
-import Header from "../Layouts/Header";
+import BaseLayout from "../Layouts/BaseLayout";
 import Mint from "./Mint";
 
 const Home: NextPage = () => {
@@ -10,11 +9,9 @@ const Home: NextPage = () => {
       <Head>
         <title>P4</title>
       </Head>
-      <Header />
-      <div>
+      <BaseLayout>
         <Mint />
-      </div>
-      <Footer />
+      </BaseLayout>
     </>
   );
 };
